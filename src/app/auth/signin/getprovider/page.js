@@ -11,7 +11,7 @@ export default function GetProvider({providers}) {
           className="hidden object-cover md:w-44 md:h-80 rotate-6  md:inline-flex"
         />
         <div className="">
-            {Object.values(providers).map((provider)=>(
+            {providers && Object.values(providers).map((provider)=>(
                 <div className="flex flex-col items-center" key={provider.id}>
                 <img
                   className="w-[300px] object-cover"
