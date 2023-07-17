@@ -21,14 +21,13 @@ import { db, storage } from "../firebase";
 import { deleteObject, ref } from "firebase/storage";
 import { useSession,signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 
 export default function Post({ post, id }) {
   const {data:session} = useSession()
   const [likes,setLikes] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
-  console.log(likes)
-  console.log(hasLiked)
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(db, "posts", post.id, "likes"),
@@ -70,10 +69,10 @@ export default function Post({ post, id }) {
   return (
     <>
       {post.data().image &&(
-        <div className="flex p-3 cursor-pointer border-b border-gray-200">
+        <div className="flex p-3 cursor-pointer border-b border-gray-200 ">
         {/* user image */}
         <img
-          className="h-11 w-11 rounded-full mr-4"
+          className="h-11 w-11 max-sm:h-8 max-sm:w-8 rounded-full mr-4 max-sm:mt-2"
           src={post.data().userImg}
           alt="user-img"
         />
@@ -88,10 +87,10 @@ export default function Post({ post, id }) {
                 {post.data().name}
               </h4>
               <span className="text-sm sm:text-[15px]">
-                @{post.data().username} -{""}
+                @{post.data().username} .{""}
               </span>
               <span className="text-sm sm:text-[15px] hover:underline">
-                  <Moment fromNow>{post?.data().timestamp?.toDate()}</Moment>
+                  <Moment fromNow ago>{post?.data().timestamp?.toDate()}</Moment>
               </span>
             </div>
   
@@ -110,14 +109,14 @@ export default function Post({ post, id }) {
           {/* post image */}
   
           <img
-            className="rounded-2xl mr-2"
+            className="rounded-2xl mr-2 max-sm:w-80"
             src={post.data().image}
             alt="img"
           />
   
           {/* icons */}
   
-          <div className="flex justify-between text-gray-500 p-2">
+          <div className="flex justify-between text-gray-500 p-2 max-sm:w-80">
             <div className="flex items-center select-none">
               <ChatIcon
               
