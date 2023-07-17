@@ -61,12 +61,18 @@ import {
       setSelectedFile(readerEvent.target.result);
     };}
 
+    function signout(){
+      if(window.confirm("Are you sure you want to signout?")){
+        signOut()
+    }
+    }
+
     return (
       <>
         {session && (
           <div className="flex  border-b border-gray-200 p-3 space-x-3">
           <img
-            onClick={signOut}
+            onClick={signout}
             src={session.user.image}
             alt="user-img"
             className="h-11 w-11 rounded-full cursor-pointer hover:brightness-95"
@@ -76,7 +82,7 @@ import {
               <textarea
                 className="w-full border-none focus:ring-0 focus:outline-none text-lg placeholder-gray-700 tracking-wide min-h-[50px] text-gray-700"
                 rows="2"
-                placeholder="What's happening?"
+                placeholder="What's popping?"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
               ></textarea>
