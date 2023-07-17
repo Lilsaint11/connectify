@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import SidebarMenuItem from "./SidebarMenuItem";
+import SidebarMenuItem from "./sidebarMenuItem";
 import { HomeIcon } from "@heroicons/react/solid";
 import {
   BellIcon,

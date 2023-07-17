@@ -1,7 +1,8 @@
 "use client";
 import { SearchIcon } from "@heroicons/react/outline";
-import News from "./News";
+
 import { useState } from "react";
+import News from "./news";
 
 export default function Widgets({ newsResults, randomUsersResults }) {
   const [articleNum, setArticleNum] = useState(3);
