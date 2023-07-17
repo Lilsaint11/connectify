@@ -1,6 +1,6 @@
 "use client";
 import { SearchIcon } from "@heroicons/react/outline";
-
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import News from "./news";
 
@@ -23,8 +23,9 @@ export default function Widgets({ newsResults, randomUsersResults }) {
       <div className="text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2 w-[90%] xl:w-[75%]">
         <h4 className="font-bold text-xl px-4">Whats happening</h4>
         <>
+        <AnimatePresence>
           {newsResults.slice(0, articleNum).map((article) => (
-            <div
+            <motion.div
               key={article.title}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -32,8 +33,9 @@ export default function Widgets({ newsResults, randomUsersResults }) {
               transition={{ duration: 1 }}
             >
               <News key={article.title} article={article} />
-            </div>
+            </motion.div>
           ))}
+        </AnimatePresence>
         </>
         <button
           onClick={() => setArticleNum(articleNum + 3)}
@@ -45,8 +47,9 @@ export default function Widgets({ newsResults, randomUsersResults }) {
       <div className="sticky top-16 text-gray-700 space-y-3 bg-gray-100 pt-2 rounded-xl w-[90%] xl:w-[75%]">
         <h4 className="font-bold text-xl px-4">Who to follow</h4>
         <>
+        <AnimatePresence>
           {randomUsersResults.slice(0, randomUserNum).map((randomUser) => (
-            <div
+            <motion.div
             key={randomUser.login.username}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -76,8 +79,9 @@ export default function Widgets({ newsResults, randomUsersResults }) {
                 </button>
               </div>
 
-            </div>
+            </motion.div>
           ))}
+        </AnimatePresence>
         </>
         <button
           onClick={() => setRandomUserNum(randomUserNum + 3)}

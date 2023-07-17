@@ -68,7 +68,6 @@ export default function Post({ post, id }) {
 
   return (
     <>
-      {post.data().image &&(
         <div className="flex p-3 cursor-pointer border-b border-gray-200 ">
         {/* user image */}
         <img
@@ -107,12 +106,13 @@ export default function Post({ post, id }) {
           </p>
   
           {/* post image */}
-  
+          {post.data().image &&
           <img
             className="rounded-2xl mr-2 max-sm:w-80"
             src={post.data().image}
             alt="img"
           />
+          }
   
           {/* icons */}
   
@@ -159,7 +159,6 @@ export default function Post({ post, id }) {
           </div>
         </div>
       </div>
-      )}
   </>
   );
 }
