@@ -21,13 +21,19 @@ import { db, storage } from "../firebase";
 import { deleteObject, ref } from "firebase/storage";
 import { useSession,signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useRecoilState } from "recoil";
+import { modalState, postIdState} from "../atom/modalatom";
+import { useRouter } from "next/navigation";
 
 
 export default function Post({ post, id }) {
-  const {data:session} = useSession()
+  const {data:session} = useSession();
+  const router = useRouter()
+  const [comments, setComments] = useState([]);
   const [likes,setLikes] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
+  const [open, setOpen] = useRecoilState(modalState);
+  const [postId, setPostId] = useRecoilState(postIdState);
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(db, "posts", post.id, "likes"),
@@ -36,9 +42,15 @@ export default function Post({ post, id }) {
   }, [db]);
 
   useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, "posts", post.id, "comments"),
+      (snapshot) => setComments(snapshot.docs)
+    );
+  }, [db]);
+
+  useEffect(() => {
     setHasLiked(likes.findIndex((like) => like.id === session?.user.uid) !== -1);
   }, [likes]);
-
 
 
   async function likePost() {
@@ -101,6 +113,7 @@ export default function Post({ post, id }) {
   
           <p
             className="text-gray-800 text-[15px sm:text-[16px] mb-2"
+            onClick={()=>{router.push(`/posts/${post.id}`);}}
           >
             {post.data().text}
           </p>
@@ -119,10 +132,19 @@ export default function Post({ post, id }) {
           <div className="flex justify-between text-gray-500 p-2 max-sm:w-80">
             <div className="flex items-center select-none">
               <ChatIcon
-              
+                onClick={()=>{
+                  if(!session){
+                    signIn()
+                  }else{
+                  setPostId(post.id)
+                  setOpen(!open)}
+                }
+                } 
                 className="h-9 w-9 hoverEffect p-2 hover:text-purple-500 hover:bg-purple-100"
               />
-              
+               {comments.length > 0 && (
+              <span className="text-sm">{comments.length}</span>
+            )}
             </div>
             
             {session?.user.uid === post?.data()?.id && (

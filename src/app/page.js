@@ -1,6 +1,7 @@
 import SideBar from './components/sidebar'
 import Feed from './components/feed'
 import Widgets from './components/widgets'
+import CommentModal from './components/commentModal';
 
 export default async function Home() {
   const newsResults = await fetch(
@@ -14,6 +15,7 @@ export default async function Home() {
       <SideBar />
         <Feed />
         <Widgets newsResults={newsResults.articles} randomUsersResults={randomUsersResults.results} />
+        <CommentModal />
    </div>
   )
 }
