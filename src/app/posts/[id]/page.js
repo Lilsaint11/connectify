@@ -2,9 +2,9 @@
 
 import { ArrowLeftIcon } from "@heroicons/react/outline";
 import Head from "next/head";
-import CommentModal from "../../components/CommentModal";
-import Sidebar from "../../components/Sidebar";
-import Widgets from "../../components/Widgets";
+import CommentModal from "../../components/commentModal";
+import Sidebar from "../../components/sidebar";
+import Widgets from "../../components/widgets";
 import Post from "../../components/Post";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
