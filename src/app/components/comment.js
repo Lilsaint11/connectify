@@ -31,7 +31,6 @@ import {
     const [postId, setPostId] = useRecoilState(postIdState);
     const router = useRouter();
     const {data:session} = useSession();
-    console.log(session)
   
     useEffect(() => {
       const unsubscribe = onSnapshot(
@@ -87,10 +86,10 @@ import {
     }
   
     return (
-      <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-20">
+      <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-20 max-sm:pl-12 ">
         {/* user image */}
         <img
-          className="h-11 w-11 rounded-full mr-4"
+          className="max-sm:h-8 max-sm:w-8 h-11 w-11 rounded-full max-sm:mr-2 mr-4 mt-2"
           src={comment?.userImg}
           alt="user-img"
         />
@@ -108,7 +107,7 @@ import {
                 @{comment?.username} -{" "}
               </span>
               <span className="text-sm sm:text-[15px] hover:underline">
-                <Moment fromNow>{comment?.timestamp?.toDate()}</Moment>
+                <Moment fromNow ago>{comment?.timestamp?.toDate()}</Moment>
               </span>
             </div>
   
