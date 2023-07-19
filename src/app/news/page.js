@@ -31,7 +31,7 @@ export default async function NewsPage (){
       <Sidebar />
         <div className="text-gray-700 space-y-3 bg-gray-100 pt-2 w-[90%] xl:w-[75%] xl:ml-[370px] w-full">
           
-        <h4 className="font-bold text-xl px-4">Whats happening</h4>
+        <h4 className="font-bold text-xl px-4">Whats happening?</h4>
         <>
           {newsResults.articles.map((article) => (
             <div
