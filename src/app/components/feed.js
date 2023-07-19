@@ -10,11 +10,15 @@ import Image from "next/image";
 import {signIn} from "next-auth/react";
 import {AnimatePresence,motion} from "framer-motion";
 import { useSession } from "next-auth/react";
+import Drawer from "./drawer";
+import { useRecoilState } from "recoil";
+import { drawerState } from "../atom/modalatom";
 
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
   const {data:session} = useSession();
+  const [open,setOpen] = useRecoilState(drawerState);
   useEffect(
     () =>
       onSnapshot(
@@ -25,14 +29,18 @@ export default function Feed() {
       ),
     []
   );
-  const signin= () => {
-    if(!session){
-      signIn()
-    }
+
+  function openDrawer(){
+      if(session){
+        setOpen(!open)
+      }
   }
+ 
+ 
   return (
     <div className="xl:ml-[370px] border-l border-r border-gray-200  xl:min-w-[576px] sm:ml-[73px] flex-grow max-w-xl">
-      <div className="flex py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">
+     {session && <Drawer /> } 
+      <div className="flex py-2 px-3 sticky top-0 z-40 bg-white border-b border-gray-200">
         <div>
           <h2 className="text-lg sm:text-xl font-bold cursor-pointer visible max-sm:hidden">Home</h2>
           <Image
@@ -41,11 +49,11 @@ export default function Feed() {
             src="https://logodix.com/logo/989957.png"
             alt="img"
             className="visible sm:hidden cursor-pointer"
-            onClick={signin}
+            onClick={openDrawer}
           ></Image>
         </div>
-        <div className="hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9">
-          <SparklesIcon className="h-5" />
+        <div className={`hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9 ${!session && "w-20 text-purple-800"}`} >
+          {session?<SparklesIcon className="h-5" />:<p onClick={signIn}>Sign in</p>}
         </div>
       </div>
       <Input />

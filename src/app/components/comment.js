@@ -22,6 +22,7 @@ import {
   import { modalState, postIdState } from "../atom/modalatom";
   import { useRouter } from "next/navigation";
   import { useSession} from "next-auth/react";
+import WidgetsData from "./widgetData";
  
   
   export default function Comment({ comment, commentId, originalPostId }) {
@@ -86,7 +87,7 @@ import {
     }
   
     return (
-      <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-20 max-sm:pl-12 ">
+      <div className="flex p-3 cursor-pointer border-b border-gray-200 pl-20 max-sm:pl-12 max-[450px]:pl-4">
         {/* user image */}
         <img
           className="max-sm:h-8 max-sm:w-8 h-11 w-11 rounded-full max-sm:mr-2 mr-4 mt-2"
@@ -94,7 +95,7 @@ import {
           alt="user-img"
         />
         {/* right side */}
-        <div className="flex-1">
+        <div className="flex-1"> 
           {/* Header */}
   
           <div className="flex items-center justify-between">
@@ -170,6 +171,7 @@ import {
             <ChartBarIcon className="h-9 w-9 hoverEffect p-2 hover:text-sky-500 hover:bg-sky-100" />
           </div>
         </div>
+        {/*<WidgetsData />*/}
       </div>
     );
   }
