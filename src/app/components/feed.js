@@ -55,7 +55,7 @@ export default function Feed() {
             onClick={openDrawer}
           ></Image>
         </div>
-        <div className={`hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9 ${!session && "w-28 text-purple-800"}`} >
+        <div className={`hoverEffect flex items-center justify-center px-0 ml-auto w-28 h-9 ${!session && "w-28 text-purple-800"}`} >
           {session?<SparklesIcon className="h-5" />:<p onClick={signIn}>Sign in</p>}
         </div>
       </div>
