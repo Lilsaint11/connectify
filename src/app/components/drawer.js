@@ -27,7 +27,7 @@ export default function Drawer() {
  
 
   return (
-    <div className={`flex flex-col p-2 xl:items-start fixed h-full xl:ml-24 bg-white w-1/2 justify-between z-50 shadow-sm shadow-slate-500 transition duration-300 sm:hidden visible translate-x-[-50vw] ${open && "translate-x-0"}`}>
+    <div className={`flex flex-col p-2 xl:items-start fixed h-full xl:ml-24 bg-white w-1/2 justify-between z-50 shadow-sm shadow-slate-500 transition duration-300 sm:hidden visible  ${open ? "translate-x-0":"translate-x-[-50vw]"}`}>
       {/* Logo */}
       <div>
         <div className="p-0 mb-8 xl:px-1 cursor-pointer">

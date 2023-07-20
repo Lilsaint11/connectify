@@ -1,6 +1,6 @@
 "use client";
 
-import { SparklesIcon } from "@heroicons/react/outline";
+import { SparklesIcon, PaperAirplaneIcon } from "@heroicons/react/outline";
 import Input from "./input";
 import Post from "./post";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
@@ -12,13 +12,14 @@ import {AnimatePresence,motion} from "framer-motion";
 import { useSession } from "next-auth/react";
 import Drawer from "./drawer";
 import { useRecoilState } from "recoil";
-import { drawerState } from "../atom/modalatom";
+import { drawerState,postModalState } from "../atom/modalatom";
 
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
   const {data:session} = useSession();
   const [open,setOpen] = useRecoilState(drawerState);
+  const [postModal,setPostModal] = useRecoilState(postModalState);
   useEffect(
     () =>
       onSnapshot(
@@ -32,9 +33,11 @@ export default function Feed() {
 
   function openDrawer(){
       if(session){
-        setOpen(!open)
+        setOpen(true)
       }
   }
+
+  console.log(open)
  
  
   return (
@@ -56,7 +59,7 @@ export default function Feed() {
           {session?<SparklesIcon className="h-5" />:<p onClick={signIn}>Sign in</p>}
         </div>
       </div>
-      <Input />
+     <span className="visible max-sm:hidden"><Input /></span> 
     <AnimatePresence>
       {posts.map((post)=>(
           <motion.div 
@@ -70,6 +73,9 @@ export default function Feed() {
           </motion.div>
         ))}
     </AnimatePresence>
+    <div className="h-5 fixed right-14 bottom-24 h-[45px] w-[45px] rounded-full bg-purple-500 p-2 cursor-pointer flex items-center justify-center visible sm:hidden">
+      <PaperAirplaneIcon className=" p-1 rotate-45 text-white" onClick={()=>setPostModal(true)}/>
+    </div>
     </div>
   );
 }

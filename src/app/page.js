@@ -2,6 +2,7 @@ import SideBar from './components/sidebar'
 import Feed from './components/feed'
 import CommentModal from './components/commentModal';
 import WidgetsData from './components/widgetData';
+import PostModal from './components/postmodal';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <Feed />
         <WidgetsData/>
         <CommentModal />
+        <PostModal />
    </div>
   )
 }
