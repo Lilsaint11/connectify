@@ -74,7 +74,7 @@ export default function Feed() {
         ))}
     </AnimatePresence>
     {session && <div className="h-5 fixed right-14 bottom-24 h-[45px] w-[45px] rounded-full bg-purple-500 p-2 cursor-pointer flex items-center justify-center visible sm:hidden">
-      <PaperAirplaneIcon className="z-50 relative p-1 rotate-45 text-white" onClick={()=>setPostModal(true)}/>
+      <PaperAirplaneIcon className="z-50 relative p-1 rotate-45 " onClick={()=>setPostModal(true)}/>
     </div>}
     </div>
   );
