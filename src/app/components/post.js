@@ -121,7 +121,7 @@ export default function Post({ post, id }) {
           {/* post image */}
           {post.data().image &&
           <img
-            className="rounded-2xl mr-2 max-sm:w-80"
+            className="rounded-2xl mr-2 max-sm:w-80 max-[400px]:w-72"
             src={post.data().image}
             alt="img"
           />

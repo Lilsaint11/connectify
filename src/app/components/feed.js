@@ -55,7 +55,7 @@ export default function Feed() {
             onClick={openDrawer}
           ></Image>
         </div>
-        <div className={`hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9 ${!session && "w-20 text-purple-800"}`} >
+        <div className={`hoverEffect flex items-center justify-center px-0 ml-auto w-9 h-9 ${!session && "w-28 text-purple-800"}`} >
           {session?<SparklesIcon className="h-5" />:<p onClick={signIn}>Sign in</p>}
         </div>
       </div>
@@ -73,9 +73,9 @@ export default function Feed() {
           </motion.div>
         ))}
     </AnimatePresence>
-    <div className="h-5 fixed right-14 bottom-24 h-[45px] w-[45px] rounded-full bg-purple-500 p-2 cursor-pointer flex items-center justify-center visible sm:hidden">
-      <PaperAirplaneIcon className=" p-1 rotate-45 text-white" onClick={()=>setPostModal(true)}/>
-    </div>
+    {session && <div className="h-5 fixed right-14 bottom-24 h-[45px] w-[45px] rounded-full bg-purple-500 p-2 cursor-pointer flex items-center justify-center visible sm:hidden">
+      <PaperAirplaneIcon className="z-50 p-1 rotate-45 text-white" onClick={()=>setPostModal(true)}/>
+    </div>}
     </div>
   );
 }
